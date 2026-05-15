@@ -1,33 +1,43 @@
-# Pack Skills Claude Code · Vercel
+# Pack Skills Claude Code · Aura Formation Vercel
 
-4 skills pour déployer ton site sur Vercel via Claude Code, utilisés dans la formation **Aura Académie**.
+2 skills custom qui complètent le plugin Vercel officiel de Claude Code.
 
-## Installation rapide
+## Setup en 2 étapes
+
+### 1️⃣ Installer le plugin Vercel officiel (une fois)
+
+Dans Claude Code, tape :
+```
+/plugin install vercel
+/reload-plugins
+```
+
+Tu récupères ~30 skills `vercel:*` maintenus par Vercel : `vercel:deploy`, `vercel:env`, `vercel:status`, `vercel:nextjs`, `vercel:turbopack`, etc.
+
+### 2️⃣ Ajouter les 2 skills custom Aura
 
 Dans Claude Code, demande simplement :
 
-> Installe les 4 skills de https://github.com/kelian-gif/aura-vercel-pack dans `~/.claude/skills/`, et les outils Vercel CLI + GitHub CLI dont j'ai besoin.
+> Installe les 2 skills de https://github.com/kelian-gif/aura-vercel-pack dans `~/.claude/skills/`.
 
-Claude clone le repo, copie les skills, installe les outils, et te fait un résumé. C'est tout.
+## Pourquoi ces 2 skills custom ?
 
-## Skills inclus
+Le plugin Vercel officiel couvre le déploiement et la gestion des variables d'environnement. Mais il ne gère pas le **workflow quotidien commit + monitor + auto-fix**. C'est ce que ces 2 skills ajoutent :
 
-| Skill | Type | À quoi ça sert |
-|---|---|---|
-| `deploy-to-vercel` | 🟢 Officiel Vercel | Met ton site en ligne sur Vercel pour la première fois |
-| `setup-vercel-env` | 🟡 Custom Aura | Pousse tes configs (.env.local) sur Vercel en chiffré |
-| `commit-and-monitor` | 🟡 Custom Aura | Sauvegarde + déploie + auto-fix si ça casse |
-| `ci-fixer` | 🟡 Custom Aura | Répare en boucle un déploiement bloqué |
+| Skill | À quoi ça sert |
+|---|---|
+| `commit-and-monitor` | Tu modifies, tu lances → Claude sauvegarde, déploie sur Vercel, **surveille en direct**, et **corrige si ça casse** |
+| `ci-fixer` | Répare en boucle un déploiement bloqué (Vercel, GitHub Actions, Netlify) |
 
-## Mode d'emploi par skill
+## Workflow complet
 
-Une fois installés, dans Claude Code :
+Une fois les 3 installés (plugin + 2 customs), tu as :
 
 ```
-/deploy-to-vercel
-/setup-vercel-env
-/commit-and-monitor "message du commit"
-/ci-fixer
+/vercel:deploy              # premier déploiement (plugin officiel)
+/vercel:env                 # configs/secrets (plugin officiel)
+/commit-and-monitor "msg"   # workflow quotidien (custom Aura)
+/ci-fixer                   # réparation déploiement (custom Aura)
 ```
 
-Tu n'as plus jamais à toucher au terminal pour déployer.
+Tu n'as plus jamais à toucher le terminal pour déployer.
